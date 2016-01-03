@@ -106,7 +106,7 @@ public class Game extends Canvas implements Runnable {
 
 	public void tick() {
 		key.tick();
-		screen.tick();
+		getScreen().tick();
 	}
 
 	public void render() {
@@ -120,7 +120,7 @@ public class Game extends Canvas implements Runnable {
 		g.setColor(Color.BLACK);
 		g.clearRect(0, 0, getWidth(), getHeight());
 
-		screen.render(g);
+		getScreen().render(g);
 
 		g.dispose();
 		bs.show();
@@ -130,5 +130,9 @@ public class Game extends Canvas implements Runnable {
 		Game s = new Game();
 		setCurrentGame(s);
 		s.start();
+	}
+
+	public Screen getScreen() {
+		return screen;
 	}
 }

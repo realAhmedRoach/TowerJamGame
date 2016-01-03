@@ -10,8 +10,8 @@ public class Tile {
 	public BufferedImage sprite;
 	
 	public static final Tile GRASS = new Tile(Spritesheet.SHEET.crop(0, 0));
-	public static final Tile ROCK = new Tile(Spritesheet.SHEET.crop(0, 1));
-	public static final Tile WATER = new Tile(Spritesheet.SHEET.crop(0, 2));
+	public static final Tile ROCK = new Tile(Spritesheet.SHEET.crop(1, 0));
+	public static final Tile WATER = new Tile(Spritesheet.SHEET.crop(2, 0));
 	public static final Tile CONCRETE = new Tile(Spritesheet.SHEET.crop(3,0));
 	public static final Tile CONCRETE_TOP = new Tile(Spritesheet.SHEET.crop(4, 0));
 	public static final Tile SWORD = new Tile(Spritesheet.SHEET.crop(5,0));
