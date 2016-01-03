@@ -1,10 +1,10 @@
-package gettothecastle.entities;
+package dev.thetechnokid.gather.entities;
 
 import java.awt.Graphics;
 import java.awt.Rectangle;
 
-import gettothecastle.gfx.Tile;
-import gettothecastle.input.Keyboard;
+import dev.thetechnokid.gather.gfx.Tile;
+import dev.thetechnokid.gather.input.Keyboard;
 
 public abstract class Entity {
 	public int x, y;

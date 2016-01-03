@@ -1,4 +1,4 @@
-package gettothecastle;
+package dev.thetechnokid.gather;
 
 import java.awt.BorderLayout;
 import java.awt.Canvas;
@@ -9,8 +9,8 @@ import java.awt.image.BufferStrategy;
 
 import javax.swing.JFrame;
 
-import gettothecastle.gfx.Screen;
-import gettothecastle.input.Keyboard;
+import dev.thetechnokid.gather.gfx.Screen;
+import dev.thetechnokid.gather.input.Keyboard;
 
 public class Game extends Canvas implements Runnable {
 	private static final long serialVersionUID = 1L;
@@ -18,7 +18,7 @@ public class Game extends Canvas implements Runnable {
 	public static final int WIDTH = 800;
 	public static final int HEIGHT = 600;
 
-	public static final String NAME = "Get to the Castle";
+	public static final String NAME = "Gather";
 
 	private static Game currGame;
 

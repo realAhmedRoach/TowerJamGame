@@ -1,4 +1,4 @@
-package gettothecastle.gfx;
+package dev.thetechnokid.gather.gfx;
 
 import java.awt.Graphics;
 import java.awt.Point;

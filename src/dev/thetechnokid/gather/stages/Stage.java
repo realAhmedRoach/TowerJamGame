@@ -1,6 +1,6 @@
-package gettothecastle.stages;
+package dev.thetechnokid.gather.stages;
 
-import gettothecastle.gfx.Screen;
+import dev.thetechnokid.gather.gfx.Screen;
 
 public abstract class Stage {
 	

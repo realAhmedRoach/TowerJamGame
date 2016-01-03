@@ -1,4 +1,4 @@
-package gettothecastle.input;
+package dev.thetechnokid.gather.input;
 
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;

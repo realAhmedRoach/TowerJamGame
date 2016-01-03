@@ -1,9 +1,9 @@
-package gettothecastle.entities;
+package dev.thetechnokid.gather.entities;
 
 import java.awt.Graphics;
 import java.util.ArrayList;
 
-import gettothecastle.Game;
+import dev.thetechnokid.gather.Game;
 
 public class EntityController {
 	private ArrayList<Entity> entities = new ArrayList<Entity>();

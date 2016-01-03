@@ -1,4 +1,4 @@
-package gettothecastle.gfx;
+package dev.thetechnokid.gather.gfx;
 
 public class Text {
 	public static final Tile A = new Tile(Spritesheet.SHEET.crop(9, 0));

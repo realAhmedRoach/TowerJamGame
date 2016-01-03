@@ -1,6 +1,6 @@
-package gettothecastle.stages;
+package dev.thetechnokid.gather.stages;
 
-import gettothecastle.gfx.*;
+import dev.thetechnokid.gather.gfx.*;
 
 public class Menu extends Stage {
 

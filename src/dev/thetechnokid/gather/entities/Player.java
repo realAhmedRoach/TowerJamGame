@@ -1,8 +1,8 @@
-package gettothecastle.entities;
+package dev.thetechnokid.gather.entities;
 
-import gettothecastle.Game;
-import gettothecastle.gfx.Tile;
-import gettothecastle.input.Keyboard;
+import dev.thetechnokid.gather.Game;
+import dev.thetechnokid.gather.gfx.Tile;
+import dev.thetechnokid.gather.input.Keyboard;
 
 public class Player extends Entity {
 

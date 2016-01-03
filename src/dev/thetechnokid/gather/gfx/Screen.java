@@ -1,13 +1,13 @@
-package gettothecastle.gfx;
+package dev.thetechnokid.gather.gfx;
 
 import java.awt.Graphics;
 import java.util.Random;
 
-import gettothecastle.Game;
-import gettothecastle.entities.EntityController;
-import gettothecastle.entities.Ore;
-import gettothecastle.stages.Menu;
-import gettothecastle.stages.Stage;
+import dev.thetechnokid.gather.Game;
+import dev.thetechnokid.gather.entities.EntityController;
+import dev.thetechnokid.gather.entities.Ore;
+import dev.thetechnokid.gather.stages.Menu;
+import dev.thetechnokid.gather.stages.Stage;
 
 public class Screen {
 	public final int width, height;
