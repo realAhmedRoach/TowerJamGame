@@ -1,43 +1,34 @@
 package gettothecastle.gfx;
 
-import java.util.Random;
+import java.awt.Graphics;
+
+import gettothecastle.Game;
+import gettothecastle.entities.Player;
+import gettothecastle.stages.Menu;
+import gettothecastle.stages.Stage;
 
 public class Screen {
-	private int width, height;
+	public final int width, height;
 
-	private static final int MAP_SIZE = 64;
-	private static final int MAP_SIZE_MASK = MAP_SIZE - 1;
+	public static final int MAP_SIZE = 8;
 
-	public int[] pixels;
-	public int[] tiles = new int[MAP_SIZE * MAP_SIZE];
-
+	private Map map;
+	
 	public Screen(int width, int height) {
 		this.width = width;
 		this.height = height;
-		pixels = new int[width * height];
+		map = new Map(this);
+		
 
-		for (int i = 0; i < tiles.length; i++) {
-			tiles[i] = new Random().nextInt(0xffffff);
-		}
+		Stage.setCurrentStage(new Menu());
+		map.addEntity(new Player(Game.getCurrentGame().getKeyboard()));
 	}
 
-	public void clear() {
-		for (int i = 0; i < pixels.length; i++)
-			pixels[i] = 0;
+	public void tick() {
+		map.tick();
 	}
-
-	public void render(int xOffset, int yOffset) {
-		for (int y = 0; y < height; y++) {
-			int yp = y + yOffset;
-			if (yp < 0 || yp >= height)
-				continue;
-			for (int x = 0; x < width; x++) {
-				int xp = x + xOffset;
-				if (xp < 0 || xp >= width)
-					continue;
-				pixels[xp + yp * width] = Sprite.GRASS.pixels[(x & 7)
-						+ (y & 7) * Sprite.GRASS.SIZE];
-			}
-		}
+	
+	public void render(Graphics g) {
+		map.render(g);
 	}
 }

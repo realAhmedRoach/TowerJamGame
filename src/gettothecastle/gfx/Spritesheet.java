@@ -7,28 +7,30 @@ import javax.imageio.ImageIO;
 
 public class Spritesheet {
 
-	private String path;
-	public final int SIZE;
-	public int[] pixels;
+	private BufferedImage image;
 
-	public static final Spritesheet TILES = new Spritesheet("/spritesheet.png", 128);
+	public static Spritesheet SHEET;
 	
-	public Spritesheet(String path, int size) {
-		this.path = path;
-		this.SIZE = size;
-		pixels = new int[SIZE * SIZE];
-		load();
-	}
+	private static int SIZE = 8;
 	
-	private void load() {
+	static {
 		try {
-			BufferedImage image = ImageIO.read(Spritesheet.class.getResource(path));
-			int w = image.getWidth();
-			int h = image.getHeight();
-			image.getRGB(0, 0, w, h, pixels, 0, w);
+			SHEET = new Spritesheet(ImageIO.read(Spritesheet.class.getResource("/spritesheet.png")));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public Spritesheet(BufferedImage i) {
+		image = i;
+	}
+
+	public BufferedImage crop(int col, int row, int w, int h) {
+		return image.getSubimage(col * SIZE, row * SIZE, w, h);
+	}
+
+	public BufferedImage crop(int col, int row) {
+		return crop(col, row, SIZE, SIZE);
 	}
 
 }
