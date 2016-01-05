@@ -5,7 +5,7 @@ import java.awt.event.KeyEvent;
 
 public class Keyboard extends KeyAdapter {
 
-	private boolean[] keys = new boolean[120];
+	private boolean[] keys = new boolean[600];
 	private boolean up, down, right, left, space;
 
 	public void tick() {

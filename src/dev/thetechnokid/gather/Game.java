@@ -11,6 +11,7 @@ import javax.swing.JFrame;
 
 import dev.thetechnokid.gather.gfx.Screen;
 import dev.thetechnokid.gather.input.Keyboard;
+import dev.thetechnokid.gather.logic.LogicManager;
 
 public class Game extends Canvas implements Runnable {
 	private static final long serialVersionUID = 1L;
@@ -32,6 +33,7 @@ public class Game extends Canvas implements Runnable {
 
 	private JFrame frame;
 	private Screen screen;
+	private LogicManager logicManager;
 	private Keyboard key;
 
 	public boolean running = false;
@@ -43,6 +45,7 @@ public class Game extends Canvas implements Runnable {
 		setPreferredSize(new Dimension(WIDTH, HEIGHT));
 
 		key = new Keyboard();
+		logicManager = new LogicManager();
 
 		frame = new JFrame(NAME);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -55,10 +58,6 @@ public class Game extends Canvas implements Runnable {
 		frame.setVisible(true);
 		addKeyListener(key);
 		requestFocus();
-	}
-
-	public Keyboard getKeyboard() {
-		return key;
 	}
 
 	public synchronized void start() {
@@ -134,5 +133,13 @@ public class Game extends Canvas implements Runnable {
 
 	public Screen getScreen() {
 		return screen;
+	}
+	
+	public LogicManager getLogicManager() {
+		return logicManager;
+	}
+
+	public Keyboard getKeyboard() {
+		return key;
 	}
 }

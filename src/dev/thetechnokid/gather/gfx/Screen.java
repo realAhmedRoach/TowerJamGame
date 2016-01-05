@@ -59,5 +59,8 @@ public class Screen {
 	public void render(Graphics g) {
 		map.render(g);
 		ec.render(g);
+		Text.render("coal " + Game.getCurrentGame().getLogicManager().getCoal()
+				+ " iron " + Game.getCurrentGame().getLogicManager().getIron(),
+				g, 16, Game.HEIGHT - 24);
 	}
 }

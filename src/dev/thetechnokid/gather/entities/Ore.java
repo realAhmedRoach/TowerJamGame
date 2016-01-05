@@ -30,6 +30,8 @@ public class Ore extends Entity {
 		if (handler.isSpace() && Game.getCurrentGame().getScreen()
 				.getController().getUser().bounds().intersects(this.bounds())) {
 			mined = true;
+			if(id == 0) Game.getCurrentGame().getLogicManager().increaseCoal();
+			else if (id == 1) Game.getCurrentGame().getLogicManager().increaseIron();
 			tile = Tile.ROCK;
 		}
 	}
