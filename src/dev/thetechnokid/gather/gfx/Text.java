@@ -52,6 +52,9 @@ public class Text {
 				SEVEN, EIGHT, NINE };
 	}
 
+	// This code works perfectly:
+	// I gotta never ever ever ever,
+	// touch this code again, forever.
 	public static void render(String msg, Graphics g, int x, int y) {
 		msg = msg.toUpperCase();
 		char[] msgArray = msg.toCharArray();

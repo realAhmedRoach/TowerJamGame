@@ -2,7 +2,6 @@ package dev.thetechnokid.gather.entities;
 
 import dev.thetechnokid.gather.Game;
 import dev.thetechnokid.gather.gfx.Tile;
-import dev.thetechnokid.gather.input.Keyboard;
 
 public class Player extends Entity {
 
@@ -11,8 +10,8 @@ public class Player extends Entity {
 	int frame = 1;
 	long lastTime = System.currentTimeMillis();
 
-	public Player(Keyboard handler) {
-		super(Tile.PLAYER_WALK1, handler);
+	public Player() {
+		super(Tile.PLAYER_WALK1);
 	}
 
 	@Override

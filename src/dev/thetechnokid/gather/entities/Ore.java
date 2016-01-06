@@ -4,7 +4,6 @@ import java.util.Random;
 
 import dev.thetechnokid.gather.Game;
 import dev.thetechnokid.gather.gfx.Tile;
-import dev.thetechnokid.gather.input.Keyboard;
 
 public class Ore extends Entity {
 
@@ -12,8 +11,8 @@ public class Ore extends Entity {
 	public final int id;
 	Random rand = new Random();
 
-	public Ore(Keyboard handler) {
-		super(Tile.COAL, handler);
+	public Ore() {
+		super(Tile.COAL);
 		boolean temp = rand.nextBoolean();
 		tile = temp ? Tile.COAL : Tile.IRON;
 		if (temp)
@@ -24,7 +23,7 @@ public class Ore extends Entity {
 
 	@Override
 	public void tick() {
-		if (mined) {
+		if (isMined()) {
 			return;
 		}
 		if (handler.isSpace() && Game.getCurrentGame().getScreen()
@@ -34,6 +33,10 @@ public class Ore extends Entity {
 			else if (id == 1) Game.getCurrentGame().getLogicManager().increaseIron();
 			tile = Tile.ROCK;
 		}
+	}
+
+	public boolean isMined() {
+		return mined;
 	}
 
 }

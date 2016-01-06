@@ -3,6 +3,7 @@ package dev.thetechnokid.gather.entities;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 
+import dev.thetechnokid.gather.Game;
 import dev.thetechnokid.gather.gfx.Tile;
 import dev.thetechnokid.gather.input.Keyboard;
 
@@ -14,9 +15,9 @@ public abstract class Entity {
 	protected boolean nextSprite = false;
 	protected long lastTime;
 
-	public Entity(Tile tile, Keyboard handler) {
+	public Entity(Tile tile) {
 		this.tile = tile;
-		this.handler = handler;
+		this.handler = Game.getCurrentGame().getKeyboard();
 		lastTime = System.currentTimeMillis();
 	}
 

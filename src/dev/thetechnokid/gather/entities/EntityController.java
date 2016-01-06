@@ -1,16 +1,14 @@
 package dev.thetechnokid.gather.entities;
 
 import java.awt.Graphics;
-import java.util.ArrayList;
-
-import dev.thetechnokid.gather.Game;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 public class EntityController {
-	private ArrayList<Entity> entities = new ArrayList<Entity>();
+	private CopyOnWriteArrayList<Entity> entities = new CopyOnWriteArrayList<Entity>();
 	private Player currUser;
 	
 	public EntityController() {
-		currUser = new Player(Game.getCurrentGame().getKeyboard());
+		currUser = new Player();
 		entities.add(currUser);
 	}
 
@@ -34,15 +32,19 @@ public class EntityController {
 		return entities.get(index);
 	}
 	
-	public void tick() {
+	public synchronized void tick() {
 		for (Entity entity : entities) {
 			entity.tick();
 		}
 	}
 	
-	public void render(Graphics g) {
+	public synchronized void render(Graphics g) {
 		for (int i = entities.size()-1; i >= 0; i--) {
 			entities.get(i).render(g);
 		}
+	}
+
+	public CopyOnWriteArrayList<Entity> getEntities() {
+		return entities;
 	}
 }

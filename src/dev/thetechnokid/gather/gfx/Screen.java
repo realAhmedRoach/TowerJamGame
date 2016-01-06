@@ -1,11 +1,9 @@
 package dev.thetechnokid.gather.gfx;
 
 import java.awt.Graphics;
-import java.util.Random;
 
 import dev.thetechnokid.gather.Game;
 import dev.thetechnokid.gather.entities.EntityController;
-import dev.thetechnokid.gather.entities.Ore;
 import dev.thetechnokid.gather.stages.Menu;
 import dev.thetechnokid.gather.stages.Stage;
 
@@ -17,30 +15,13 @@ public class Screen {
 	private Map map;
 	private EntityController ec;
 
-	private Random rand = new Random();
-
 	public Screen(int width, int height) {
 		this.width = width;
 		this.height = height;
 		map = new Map(this);
 		ec = new EntityController();
 
-		addEntities();
-
 		Stage.setCurrentStage(new Menu());
-	}
-
-	private void addEntities() {
-		for (int y = 0; y < height / Tile.DRAW_SIZE; y++) {
-			for (int x = 0; x < width / Tile.DRAW_SIZE; x++) {
-				if (rand.nextInt(6) == 5) {
-					Ore c = new Ore(Game.getCurrentGame().getKeyboard());
-					c.x = x * Tile.DRAW_SIZE;
-					c.y = y * Tile.DRAW_SIZE;
-					ec.addEntity(c);
-				}
-			}
-		}
 	}
 
 	public Map getMap() {
@@ -54,11 +35,13 @@ public class Screen {
 	public void tick() {
 		map.tick();
 		ec.tick();
+		Stage.getCurrentStage().tick();
 	}
 
 	public void render(Graphics g) {
 		map.render(g);
 		ec.render(g);
+		Stage.getCurrentStage().render(g, this);
 		Text.render("coal " + Game.getCurrentGame().getLogicManager().getCoal()
 				+ " iron " + Game.getCurrentGame().getLogicManager().getIron(),
 				g, 16, Game.HEIGHT - 24);

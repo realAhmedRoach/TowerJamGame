@@ -19,12 +19,12 @@ public class Map {
 	private void generateTiles() {
 		for (int y = 0; y < screen.height / Tile.DRAW_SIZE; y++) {
 			for (int x = 0; x < screen.width / Tile.DRAW_SIZE; x++) {
-				drawMenu(x, y);
+				drawBg(x, y);
 			}
 		}
 	}
 
-	private void drawMenu(int x, int y) {
+	private void drawBg(int x, int y) {
 		Point p = new Point(x * Tile.DRAW_SIZE, y * Tile.DRAW_SIZE);
 		tiles.put(p, Tile.GRASS);
 	}
