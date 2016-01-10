@@ -32,7 +32,10 @@ public class Gameplay extends Stage {
 
 	@Override
 	public void render(Graphics g, Screen screen) {
-
+		Tower t = new Tower();
+		t.x = 11*Tile.DRAW_SIZE;
+		t.y = Tile.DRAW_SIZE;
+		t.render(g);
 	}
 
 	@Override

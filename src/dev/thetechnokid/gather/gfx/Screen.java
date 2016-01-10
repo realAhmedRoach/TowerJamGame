@@ -3,7 +3,7 @@ package dev.thetechnokid.gather.gfx;
 import java.awt.Graphics;
 
 import dev.thetechnokid.gather.Game;
-import dev.thetechnokid.gather.entities.EntityController;
+import dev.thetechnokid.gather.entities.*;
 import dev.thetechnokid.gather.stages.Menu;
 import dev.thetechnokid.gather.stages.Stage;
 
@@ -42,8 +42,7 @@ public class Screen {
 		map.render(g);
 		ec.render(g);
 		Stage.getCurrentStage().render(g, this);
-		Text.render("coal " + Game.getCurrentGame().getLogicManager().getCoal()
-				+ " iron " + Game.getCurrentGame().getLogicManager().getIron(),
+		Text.render(Game.getCurrentGame().getLogicManager().getStatusText(),
 				g, 16, Game.HEIGHT - 24);
 	}
 }

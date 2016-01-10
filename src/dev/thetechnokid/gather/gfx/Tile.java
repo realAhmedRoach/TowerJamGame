@@ -26,7 +26,9 @@ public class Tile {
 	public static final Tile PLAYER_DOWN2 = new Tile(Spritesheet.SHEET.crop(6, 2));
 	public static final Tile PLAYER_UP1 = new Tile(Spritesheet.SHEET.crop(7, 2));
 	public static final Tile PLAYER_UP2 = new Tile(Spritesheet.SHEET.crop(8, 2));
-
+	public static final Tile CONCRETE_SIDE = new Tile(Spritesheet.SHEET.crop(9, 3));
+	public static final Tile CONCRETE_SIDEFLIP = flip(CONCRETE_SIDE);
+	
 	public Tile(BufferedImage s) {
 		sprite = s;
 	}

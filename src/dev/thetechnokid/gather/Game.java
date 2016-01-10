@@ -74,7 +74,7 @@ public class Game extends Canvas implements Runnable {
 		double nsPerTick = 1000000000D / 60D;
 		int frames = 0;
 		int ticks = 0;
-		long lastTimer = System.currentTimeMillis();
+//		long lastTimer = System.currentTimeMillis();
 		double delta = 0;
 
 		screen = new Screen(WIDTH, HEIGHT);
@@ -94,18 +94,19 @@ public class Game extends Canvas implements Runnable {
 				frames++;
 				render();
 			}
-			if (System.currentTimeMillis() - lastTimer >= 1000) {
-				lastTimer += 1000;
-				System.out.println(ticks + " ticks, " + frames + " frames");
-				frames = 0;
-				ticks = 0;
-			}
+//			if (System.currentTimeMillis() - lastTimer >= 1000) {
+//				lastTimer += 1000;
+//				System.out.println(ticks + " ticks, " + frames + " frames");
+//				frames = 0;
+//				ticks = 0;
+//			}
 		}
 	}
 
 	public void tick() {
 		key.tick();
-		getScreen().tick();
+		screen.tick();
+		logicManager.tick();
 	}
 
 	public void render() {
