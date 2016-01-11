@@ -4,14 +4,23 @@ import java.awt.Graphics;
 import java.util.Random;
 
 import dev.thetechnokid.gather.Game;
-import dev.thetechnokid.gather.entities.*;
+import dev.thetechnokid.gather.entities.Entity;
+import dev.thetechnokid.gather.entities.Ore;
+import dev.thetechnokid.gather.entities.Player;
+import dev.thetechnokid.gather.entities.Tower;
 import dev.thetechnokid.gather.gfx.Screen;
+import dev.thetechnokid.gather.gfx.Text;
 import dev.thetechnokid.gather.gfx.Tile;
+import dev.thetechnokid.gather.util.Countdown;
 
 public class Gameplay extends Stage {
 
+	private Countdown c;
+	
 	public Gameplay() {
 		createEntities();
+		c = new Countdown(60);
+		c.start();
 	}
 
 	private void createEntities() {
@@ -32,10 +41,7 @@ public class Gameplay extends Stage {
 
 	@Override
 	public void render(Graphics g, Screen screen) {
-		Tower t = new Tower();
-		t.x = 11*Tile.DRAW_SIZE;
-		t.y = Tile.DRAW_SIZE;
-		t.render(g);
+		Text.render(Integer.toString(c.timeLeft()), g, 11*Tile.DRAW_SIZE, 0);
 	}
 
 	@Override
@@ -60,6 +66,10 @@ public class Gameplay extends Stage {
 						.remove(e);
 			}
 			createEntities();
+		}
+		
+		if(c.isDone()) {
+			Stage.setCurrentStage(new TowerStage());
 		}
 	}
 
