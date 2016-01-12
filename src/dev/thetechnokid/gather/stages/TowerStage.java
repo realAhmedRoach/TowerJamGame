@@ -88,7 +88,7 @@ public class TowerStage extends Stage {
 			phase = 2;
 		}
 
-		Store.tick();
+		if(phase == 1) Store.tick();
 	}
 
 }

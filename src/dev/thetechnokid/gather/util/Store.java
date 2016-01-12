@@ -15,35 +15,35 @@ public class Store {
 	
 	public static synchronized void tick() {
 		if (Game.getCurrentGame().getKeyboard().getKeys()[KeyEvent.VK_G]) {
-			if (Game.getCurrentGame().getLogicManager().upgradeSword(1))
+			if (Game.getCurrentGame().getLogicManager().buy(Store.PRICE_SWORDT1[0], Store.PRICE_SWORDT1[1]))
 				Game.getCurrentGame().getLogicManager()
-						.buy(Store.PRICE_SWORDT1[0], Store.PRICE_SWORDT1[1]);
+						.upgradeSword(1);
 		} else if (Game.getCurrentGame().getKeyboard()
 				.getKeys()[KeyEvent.VK_H]) {
-			if (Game.getCurrentGame().getLogicManager().upgradeSword(2))
+			if (Game.getCurrentGame().getLogicManager().buy(Store.PRICE_ARMORT2[0], Store.PRICE_ARMORT2[1]))
 				Game.getCurrentGame().getLogicManager()
-						.buy(Store.PRICE_ARMORT2[0], Store.PRICE_ARMORT2[1]);
+						.upgradeSword(2);
 		} else if (Game.getCurrentGame().getKeyboard()
 				.getKeys()[KeyEvent.VK_J]) {
-			if (Game.getCurrentGame().getLogicManager().upgradeSword(3))
+			if (Game.getCurrentGame().getLogicManager().buy(Store.PRICE_ARMORT3[0], Store.PRICE_ARMORT3[1]))
 				Game.getCurrentGame().getLogicManager()
-						.buy(Store.PRICE_ARMORT3[0], Store.PRICE_ARMORT3[1]);
+						.upgradeSword(3);
 		}
 		
 		if (Game.getCurrentGame().getKeyboard().getKeys()[KeyEvent.VK_V]) {
-			if (Game.getCurrentGame().getLogicManager().upgradeArmor(1))
+			if (Game.getCurrentGame().getLogicManager().buy(Store.PRICE_ARMORT1[0], Store.PRICE_ARMORT1[1]))
 				Game.getCurrentGame().getLogicManager()
-						.buy(Store.PRICE_ARMORT1[0], Store.PRICE_ARMORT1[1]);
+						.upgradeArmor(1);
 		} else if (Game.getCurrentGame().getKeyboard()
 				.getKeys()[KeyEvent.VK_B]) {
-			if (Game.getCurrentGame().getLogicManager().upgradeArmor(2))
+			if (Game.getCurrentGame().getLogicManager().buy(Store.PRICE_ARMORT2[0], Store.PRICE_ARMORT2[1]))
 				Game.getCurrentGame().getLogicManager()
-						.buy(Store.PRICE_ARMORT2[0], Store.PRICE_ARMORT2[1]);
+						.upgradeArmor(2);
 		} else if (Game.getCurrentGame().getKeyboard()
 				.getKeys()[KeyEvent.VK_N]) {
-			if (Game.getCurrentGame().getLogicManager().upgradeArmor(3))
+			if (Game.getCurrentGame().getLogicManager().buy(Store.PRICE_ARMORT3[0], Store.PRICE_ARMORT3[1]))
 				Game.getCurrentGame().getLogicManager()
-						.buy(Store.PRICE_ARMORT3[0], Store.PRICE_ARMORT3[1]);
+						.upgradeArmor(3);
 		}
 	}
 }

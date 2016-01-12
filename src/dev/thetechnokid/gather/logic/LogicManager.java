@@ -34,29 +34,25 @@ public class LogicManager {
 		iron++;
 	}
 
-	public void buy(int coal, int iron) {
+	public boolean buy(int coal, int iron) {
 		if (coal < this.coal && iron < this.iron) {
 			this.coal -= coal;
 			this.iron -= iron;
+			return true;
 		}
+		return false;
 	}
 
-	public boolean upgradeArmor(int tier) {
+	public void upgradeArmor(int tier) {
 		if (tier <= 3 && tier > 0 && armorTier < tier) {
 			armorTier = tier;
-			return true;
 		}
-		return false;
 	}
 
-	public boolean upgradeSword(int tier) {
-		
+	public void upgradeSword(int tier) {
 		if (tier <= 3 && tier > 0 && swordTier < tier) {
-			System.out.println("hey");
 			swordTier = tier;
-			return true;
 		}
-		return false;
 	}
 
 	public String getStatusText() {
