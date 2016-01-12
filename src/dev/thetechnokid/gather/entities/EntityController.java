@@ -47,4 +47,11 @@ public class EntityController {
 	public CopyOnWriteArrayList<Entity> getEntities() {
 		return entities;
 	}
+
+	public void clearEntities() {
+		for (int i = entities.size()-1; i >= 0; i--) {
+			if(entities.get(i)!=currUser)
+				entities.remove(i);
+		}
+	}
 }

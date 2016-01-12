@@ -3,9 +3,12 @@ package dev.thetechnokid.gather.logic;
 public class LogicManager {
 	private int coal;
 	private int iron;
-	private int level;
+
+	private int armorTier;
+	private int swordTier;
+
 	private String statusText;
-	private boolean statusCustom;
+	public boolean statusCustom;
 
 	public int getCoal() {
 		return coal;
@@ -15,20 +18,45 @@ public class LogicManager {
 		return iron;
 	}
 
-	public int getLevel() {
-		return level;
+	public int getArmorTier() {
+		return armorTier;
+	}
+
+	public int getSwordTier() {
+		return swordTier;
 	}
 
 	public void increaseCoal() {
 		coal++;
 	}
-	
+
 	public void increaseIron() {
 		iron++;
 	}
-	
-	public void increaseLevel() {
-		level++;
+
+	public void buy(int coal, int iron) {
+		if (coal < this.coal && iron < this.iron) {
+			this.coal -= coal;
+			this.iron -= iron;
+		}
+	}
+
+	public boolean upgradeArmor(int tier) {
+		if (tier <= 3 && tier > 0 && armorTier < tier) {
+			armorTier = tier;
+			return true;
+		}
+		return false;
+	}
+
+	public boolean upgradeSword(int tier) {
+		
+		if (tier <= 3 && tier > 0 && swordTier < tier) {
+			System.out.println("hey");
+			swordTier = tier;
+			return true;
+		}
+		return false;
 	}
 
 	public String getStatusText() {
@@ -39,9 +67,9 @@ public class LogicManager {
 		statusCustom = true;
 		this.statusText = statusText;
 	}
-	
+
 	public void tick() {
-		if(!statusCustom) 
+		if (!statusCustom)
 			this.statusText = "Coal " + getCoal() + " Iron " + getIron();
 	}
 }

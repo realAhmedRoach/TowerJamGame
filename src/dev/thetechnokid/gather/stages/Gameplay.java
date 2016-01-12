@@ -7,7 +7,6 @@ import dev.thetechnokid.gather.Game;
 import dev.thetechnokid.gather.entities.Entity;
 import dev.thetechnokid.gather.entities.Ore;
 import dev.thetechnokid.gather.entities.Player;
-import dev.thetechnokid.gather.entities.Tower;
 import dev.thetechnokid.gather.gfx.Screen;
 import dev.thetechnokid.gather.gfx.Text;
 import dev.thetechnokid.gather.gfx.Tile;
@@ -46,6 +45,10 @@ public class Gameplay extends Stage {
 
 	@Override
 	public void tick() {
+		if(c.timeLeft()<=0) {
+			Stage.setCurrentStage(new TowerStage());
+			System.out.println("done");
+		}
 		boolean done = false;
 		for (Entity entity : Game.getCurrentGame().getScreen().getController()
 				.getEntities()) {
@@ -67,10 +70,7 @@ public class Gameplay extends Stage {
 			}
 			createEntities();
 		}
-		
-		if(c.isDone()) {
-			Stage.setCurrentStage(new TowerStage());
-		}
+
 	}
 
 }
