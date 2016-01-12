@@ -5,13 +5,13 @@ import java.awt.event.KeyEvent;
 import dev.thetechnokid.gather.Game;
 
 public class Store {
-	public static final int[] PRICE_SWORDT1 = { 1, 3 };
-	public static final int[] PRICE_SWORDT2 = { 2, 6 };
-	public static final int[] PRICE_SWORDT3 = { 3, 8 };
+	public static final int[] PRICE_SWORDT1 = { 10, 20 };
+	public static final int[] PRICE_SWORDT2 = { 40, 50 };
+	public static final int[] PRICE_SWORDT3 = { 50, 55 };
 
-	public static final int[] PRICE_ARMORT1 = { 2, 4 };
-	public static final int[] PRICE_ARMORT2 = { 3, 8 };
-	public static final int[] PRICE_ARMORT3 = { 5, 10 };
+	public static final int[] PRICE_ARMORT1 = { 10, 15 };
+	public static final int[] PRICE_ARMORT2 = { 40, 45 };
+	public static final int[] PRICE_ARMORT3 = { 50, 100 };
 	
 	public static synchronized void tick() {
 		if (Game.getCurrentGame().getKeyboard().getKeys()[KeyEvent.VK_G]) {
