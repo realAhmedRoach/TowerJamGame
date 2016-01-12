@@ -6,7 +6,8 @@ import dev.thetechnokid.gather.gfx.Tile;
 public class Player extends Entity {
 
 	private final int speed = 2;
-	private final int dmg = 10;
+	//private final int dmg = 10;
+	//private final int def = 10;
 	
 	int frame = 1;
 	long lastTime = System.currentTimeMillis();

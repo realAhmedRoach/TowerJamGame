@@ -72,9 +72,7 @@ public class Game extends Canvas implements Runnable {
 	public void run() {
 		long lastTime = System.nanoTime();
 		double nsPerTick = 1000000000D / 60D;
-		int frames = 0;
-		int ticks = 0;
-//		long lastTimer = System.currentTimeMillis();
+		// long lastTimer = System.currentTimeMillis();
 		double delta = 0;
 
 		screen = new Screen(WIDTH, HEIGHT);
@@ -83,23 +81,18 @@ public class Game extends Canvas implements Runnable {
 			long now = System.nanoTime();
 			delta += (now - lastTime) / nsPerTick;
 			lastTime = now;
-			boolean shouldRender = true;
 			while (delta >= 1) {
-				ticks++;
 				tick();
 				delta--;
-				shouldRender = true;
 			}
-			if (shouldRender) {
-				frames++;
-				render();
-			}
-//			if (System.currentTimeMillis() - lastTimer >= 1000) {
-//				lastTimer += 1000;
-//				System.out.println(ticks + " ticks, " + frames + " frames");
-//				frames = 0;
-//				ticks = 0;
-//			}
+			render();
+
+			// if (System.currentTimeMillis() - lastTimer >= 1000) {
+			// lastTimer += 1000;
+			// System.out.println(ticks + " ticks, " + frames + " frames");
+			// frames = 0;
+			// ticks = 0;
+			// }
 		}
 	}
 
@@ -135,7 +128,7 @@ public class Game extends Canvas implements Runnable {
 	public Screen getScreen() {
 		return screen;
 	}
-	
+
 	public LogicManager getLogicManager() {
 		return logicManager;
 	}
