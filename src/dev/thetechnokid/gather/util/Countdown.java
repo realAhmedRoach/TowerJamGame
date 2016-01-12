@@ -24,13 +24,14 @@ public class Countdown {
 	}
 
 	public boolean isDone() {
-		if(timeLeft == 0) {
-			task.cancel();
-		}
+		
 		return timeLeft == 0;
 	}
 
 	public int timeLeft() {
+		if(timeLeft <= 0) {
+			task.cancel();
+		}
 		return timeLeft;
 	}
 

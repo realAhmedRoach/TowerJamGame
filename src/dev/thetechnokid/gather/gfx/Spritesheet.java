@@ -15,7 +15,7 @@ public class Spritesheet {
 	
 	static {
 		try {
-			SHEET = new Spritesheet(ImageIO.read(Spritesheet.class.getResource("/spritesheet2.png")));
+			SHEET = new Spritesheet(ImageIO.read(Spritesheet.class.getResource("/spritesheet.png")));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
