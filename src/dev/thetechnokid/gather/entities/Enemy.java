@@ -1,12 +1,15 @@
 package dev.thetechnokid.gather.entities;
 
 import dev.thetechnokid.gather.Game;
+import dev.thetechnokid.gather.gfx.Spritesheet;
 import dev.thetechnokid.gather.gfx.Tile;
 
 public class Enemy extends Entity {
 	private int spd = 1;
 	private int xMove, yMove;
 	private boolean diffX, diffY;
+	
+	private Tile[] sprites = {Spritesheet.SHEET.crop(3`3, row)};
 
 	public Enemy() {
 		super(Tile.PLAYER_UP1);
@@ -17,7 +20,7 @@ public class Enemy extends Entity {
 		int userX = Game.getCurrentGame().getScreen().getController()
 				.getUser().x;
 		int userY = Game.getCurrentGame().getScreen().getController()
-				.getUser().x;
+				.getUser().y;
 
 		if (userX > this.x) {
 			xMove = spd;
@@ -31,12 +34,12 @@ public class Enemy extends Entity {
 		if (userY < this.y) {
 			yMove = -spd;
 		}
+		diffX = Math.abs(userX - x) <= 5;
+		diffY = Math.abs(userY - y) <= 5;
 		if (diffX)
 			xMove = 0;
 		if (diffY)
 			yMove = 0;
-		diffX = Math.abs(userX - x) <= 5;
-		diffY = Math.abs(userY - y) <= 5;
 		move();
 	}
 
