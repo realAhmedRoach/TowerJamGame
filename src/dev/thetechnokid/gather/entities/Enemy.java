@@ -8,11 +8,17 @@ public class Enemy extends Entity {
 	private int spd = 1;
 	private int xMove, yMove;
 	private boolean diffX, diffY;
-	
-	private Tile[] sprites = {Spritesheet.SHEET.crop(3`3, row)};
 
+	static Tile walk1 = new Tile(Spritesheet.SHEET.crop(3, 3));
+	static Tile walk2 = new Tile(Spritesheet.SHEET.crop(4, 3));
+	static Tile walk1flip = Tile.flip(walk1);
+	static Tile walk2flip = Tile.flip(walk2);
+	static Tile down1 = new Tile(Spritesheet.SHEET.crop(5, 3));
+	static Tile down2 = new Tile(Spritesheet.SHEET.crop(6, 3));
+	static Tile up1 = new Tile(Spritesheet.SHEET.crop(7, 3));
+	static Tile up2 = new Tile(Spritesheet.SHEET.crop(8, 3));
 	public Enemy() {
-		super(Tile.PLAYER_UP1);
+		super(walk1);
 	}
 
 	@Override
@@ -24,15 +30,19 @@ public class Enemy extends Entity {
 
 		if (userX > this.x) {
 			xMove = spd;
+			tile = walk1;
 		}
 		if (userX < this.x) {
 			xMove = -spd;
+			tile = walk1flip;
 		}
 		if (userY > this.y) {
 			yMove = spd;
+			tile = down1;
 		}
 		if (userY < this.y) {
 			yMove = -spd;
+			tile = up1;
 		}
 		diffX = Math.abs(userX - x) <= 5;
 		diffY = Math.abs(userY - y) <= 5;
