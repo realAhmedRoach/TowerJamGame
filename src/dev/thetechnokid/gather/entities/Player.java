@@ -5,7 +5,7 @@ import dev.thetechnokid.gather.gfx.Tile;
 
 public class Player extends Entity {
 
-	private final int speed = 2;
+	private final int speed = 3;
 	//private final int dmg = 10;
 	//private final int def = 10;
 	
@@ -18,11 +18,11 @@ public class Player extends Entity {
 
 	@Override
 	public void tick() {
-		if(System.currentTimeMillis()-lastTime >= 200) {
-			if(frame == 1) frame=2;
-			else frame = 1;
-			lastTime = System.currentTimeMillis();
-		}
+		checkAnim();
+		checkInput();
+	}
+
+	private void checkInput() {
 		if (handler.isUp()) {
 			y -= speed;
 			if (y < 0)
@@ -43,6 +43,14 @@ public class Player extends Entity {
 			if (x < 0)
 				x = 0;
 			this.tile = frame == 1 ? Tile.PLAYER_WALK1FLIP : Tile.PLAYER_WALK2FLIP;
+		}
+	}
+
+	private void checkAnim() {
+		if(System.currentTimeMillis()-lastTime >= 200) {
+			if(frame == 1) frame=2;
+			else frame = 1;
+			lastTime = System.currentTimeMillis();
 		}
 	}
 
