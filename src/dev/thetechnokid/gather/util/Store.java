@@ -35,7 +35,7 @@ public class Store {
 				Game.getCurrentGame().getLogicManager().upgradeArmor(2);
 		} else if (Game.getCurrentGame().getKeyboard()
 				.getKeys()[KeyEvent.VK_N]) {
-			if (Game.getCurrentGame().getLogicManager().getArmorTier() >= 2)
+			if (Game.getCurrentGame().getLogicManager().getArmorTier() >= 3)
 				return;
 			if (Game.getCurrentGame().getLogicManager()
 					.buy(Store.PRICE_ARMORT3[0], Store.PRICE_ARMORT3[1]))
