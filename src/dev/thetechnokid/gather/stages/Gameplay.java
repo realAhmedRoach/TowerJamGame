@@ -1,7 +1,6 @@
 package dev.thetechnokid.gather.stages;
 
 import java.awt.Graphics;
-import java.util.Random;
 
 import dev.thetechnokid.gather.Game;
 import dev.thetechnokid.gather.entities.*;
@@ -23,7 +22,7 @@ public class Gameplay extends Stage {
 				/ Tile.DRAW_SIZE; y++) {
 			for (int x = 0; x < Game.getCurrentGame().getScreen().width
 					/ Tile.DRAW_SIZE; x++) {
-				if (new Random().nextInt(6) == 5) {
+				if (Math.random() < .3 && Math.random()<.3) {
 					Ore c = new Ore();
 					c.x = x * Tile.DRAW_SIZE;
 					c.y = y * Tile.DRAW_SIZE;
