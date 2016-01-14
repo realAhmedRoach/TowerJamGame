@@ -12,8 +12,9 @@ public abstract class Entity {
 	protected Tile tile;
 	protected Keyboard handler;
 
-	protected boolean nextSprite = false;
 	protected long lastTime;
+	
+	protected boolean destroyed;
 
 	public Entity(Tile tile) {
 		this.tile = tile;
@@ -22,7 +23,7 @@ public abstract class Entity {
 	}
 
 	public void render(Graphics g) {
-		g.drawImage(tile.getImage(), x, y, Tile.DRAW_SIZE, Tile.DRAW_SIZE,
+		if(!destroyed) g.drawImage(tile.getImage(), x, y, Tile.DRAW_SIZE, Tile.DRAW_SIZE,
 				null);
 	}
 

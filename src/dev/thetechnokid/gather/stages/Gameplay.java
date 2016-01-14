@@ -13,6 +13,7 @@ public class Gameplay extends Stage {
 	private Enemy crap = new Enemy();
 	public Gameplay() {
 		createEntities();
+		Game.getCurrentGame().getScreen().getController().addEntity(crap);
 		c = new Countdown(60);
 		c.start();
 	}
@@ -36,7 +37,6 @@ public class Gameplay extends Stage {
 	@Override
 	public void render(Graphics g, Screen screen) {
 		Text.render(Integer.toString(c.timeLeft()), g, 11*Tile.DRAW_SIZE, 0);
-		crap.render(g);
 	}
 
 	@Override
@@ -45,7 +45,6 @@ public class Gameplay extends Stage {
 			Stage.setCurrentStage(new TowerStage());
 			System.out.println("done");
 		}
-		crap.tick();
 		boolean done = false;
 		for (Entity entity : Game.getCurrentGame().getScreen().getController()
 				.getEntities()) {

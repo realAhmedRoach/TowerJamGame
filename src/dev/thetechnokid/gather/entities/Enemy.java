@@ -9,18 +9,21 @@ public class Enemy extends Entity {
 	private int xMove, yMove;
 	private boolean diffX, diffY;
 	private int userX, userY;
+	
+	private int hp = 100;
+	private int dmg = 5;
 
 	int frame = 1;
 	long lastTime = System.currentTimeMillis();
 
-	static Tile walk1 = new Tile(Spritesheet.SHEET.crop(3, 3));
-	static Tile walk2 = new Tile(Spritesheet.SHEET.crop(4, 3));
-	static Tile walk1flip = Tile.flip(walk1);
-	static Tile walk2flip = Tile.flip(walk2);
-	static Tile down1 = new Tile(Spritesheet.SHEET.crop(5, 3));
-	static Tile down2 = new Tile(Spritesheet.SHEET.crop(6, 3));
-	static Tile up1 = new Tile(Spritesheet.SHEET.crop(7, 3));
-	static Tile up2 = new Tile(Spritesheet.SHEET.crop(8, 3));
+	static final Tile walk1 = new Tile(Spritesheet.SHEET.crop(3, 3));
+	static final Tile walk2 = new Tile(Spritesheet.SHEET.crop(4, 3));
+	static final Tile walk1flip = Tile.flip(walk1);
+	static final Tile walk2flip = Tile.flip(walk2);
+	static final Tile down1 = new Tile(Spritesheet.SHEET.crop(5, 3));
+	static final Tile down2 = new Tile(Spritesheet.SHEET.crop(6, 3));
+	static final Tile up1 = new Tile(Spritesheet.SHEET.crop(7, 3));
+	static final Tile up2 = new Tile(Spritesheet.SHEET.crop(8, 3));
 
 	public Enemy() {
 		super(walk1);
@@ -83,10 +86,27 @@ public class Enemy extends Entity {
 	}
 
 	private void move() {
-		if (diffX && diffY)
+		if (diffX && diffY){
 			tile = down1;
+			damage();
+		}
+			
 		x += xMove;
 		y += yMove;
+	}
+
+	private void damage() {
+		if(Math.random()<.2) return;
+		
+		Game.getCurrentGame().getScreen().getController().getUser().hit(dmg);
+	}
+
+	void hit(int damage) {
+		if(hp>=damage) {
+			hp -= damage;
+			System.out.println("OW!");
+		}
+		else destroyed = true;
 	}
 
 }
