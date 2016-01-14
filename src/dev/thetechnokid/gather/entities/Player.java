@@ -3,12 +3,11 @@ package dev.thetechnokid.gather.entities;
 import dev.thetechnokid.gather.Game;
 import dev.thetechnokid.gather.gfx.Tile;
 
-public class Player extends Entity {
+public class Player extends Creature {
 
 	private final int speed = 3;
 	private final int dmg = 10;
 	private final int def = 10;
-	private int hp = 100;
 	
 	int frame = 1;
 	long lastTime = System.currentTimeMillis();
@@ -60,21 +59,8 @@ public class Player extends Entity {
 		}
 	}
 
-	private void checkAnim() {
-		if(System.currentTimeMillis()-lastTime >= 200) {
-			if(frame == 1) frame=2;
-			else frame = 1;
-			lastTime = System.currentTimeMillis();
-		}
-	}
-
 	
 	public void hit(int damage) {
-		damage = damage-(def*Game.getCurrentGame().getLogicManager().getArmorTier());
-		if(hp >= damage) {
-			hp -= damage;
-		} else {
-			destroyed = true;
-		}
+		super.hit(damage-(def*Game.getCurrentGame().getLogicManager().getArmorTier()));
 	}
 }

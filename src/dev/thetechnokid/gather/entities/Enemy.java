@@ -4,14 +4,11 @@ import dev.thetechnokid.gather.Game;
 import dev.thetechnokid.gather.gfx.Spritesheet;
 import dev.thetechnokid.gather.gfx.Tile;
 
-public class Enemy extends Entity {
-	private int spd = 2;
+public class Enemy extends Creature {
+	private int speed = 2;
 	private int xMove, yMove;
 	private boolean diffX, diffY;
 	private int userX, userY;
-	
-	private int hp = 100;
-	private int dmg = 5;
 
 	int frame = 1;
 	long lastTime = System.currentTimeMillis();
@@ -43,16 +40,6 @@ public class Enemy extends Entity {
 		userY = Game.getCurrentGame().getScreen().getController().getUser().y;
 	}
 
-	private void checkAnim() {
-		if (System.currentTimeMillis() - lastTime >= 200) {
-			if (frame == 1)
-				frame = 2;
-			else
-				frame = 1;
-			lastTime = System.currentTimeMillis();
-		}
-	}
-
 	private void checkDiffs() {
 		diffX = Math.abs(userX - x) <= 1;
 		diffY = Math.abs(userY - y) <= 1;
@@ -64,22 +51,22 @@ public class Enemy extends Entity {
 
 	private void checkPos() {
 		if (userY > this.y) {
-			yMove = spd;
+			yMove = speed;
 			if ((userX - x) < (userY - y))
 				tile = frame == 1 ? down1 : down2;
 		}
 		if (userY < this.y) {
-			yMove = -spd;
+			yMove = -speed;
 			if ((userX - x) > (userY - y))
 				tile = frame == 1 ? up1 : up2;
 		}
 		if (userX > this.x) {
-			xMove = spd;
+			xMove = speed;
 			if ((userY - y) < (userX - x))
 				tile = frame == 1 ? walk1 : walk2;
 		}
 		if (userX < this.x) {
-			xMove = -spd;
+			xMove = -speed;
 			if ((userY - y) > (userX - x))
 				tile = frame == 1 ? walk1flip : walk2flip;
 		}
@@ -99,14 +86,6 @@ public class Enemy extends Entity {
 		if(Math.random()<.2) return;
 		
 		Game.getCurrentGame().getScreen().getController().getUser().hit(dmg);
-	}
-
-	void hit(int damage) {
-		if(hp>=damage) {
-			hp -= damage;
-			System.out.println("OW!");
-		}
-		else destroyed = true;
 	}
 
 }
