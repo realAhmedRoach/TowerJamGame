@@ -10,7 +10,7 @@ import dev.thetechnokid.gather.util.Countdown;
 public class Gameplay extends Stage {
 
 	private Countdown c;
-	private Enemy crap = new Enemy();
+	private Enemy crap = new Enemy(false);
 	public Gameplay() {
 		createEntities();
 		Game.getCurrentGame().getScreen().getController().addEntity(crap);

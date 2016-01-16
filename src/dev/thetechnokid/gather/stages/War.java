@@ -1,6 +1,7 @@
 package dev.thetechnokid.gather.stages;
 
 import java.awt.Graphics;
+import java.util.Random;
 
 import dev.thetechnokid.gather.Game;
 import dev.thetechnokid.gather.entities.Enemy;
@@ -11,6 +12,7 @@ public class War extends Stage {
 
 	private EntityController controller = Game.getCurrentGame().getScreen().getController();
 	private boolean lost;
+	private Random random = new Random();
 	
 	public War() {
 		createEnemies();
@@ -18,8 +20,9 @@ public class War extends Stage {
 
 	private void createEnemies() {
 		for(int y = 0; y < Game.HEIGHT / Tile.DRAW_SIZE; y++) {
-			Enemy enemy = new Enemy();
-			enemy.x = 0;
+			boolean rand = random.nextBoolean();
+			Enemy enemy = new Enemy(rand);
+			enemy.x = random.nextInt(Game.WIDTH-Tile.DRAW_SIZE);
 			enemy.y = y * Tile.DRAW_SIZE;
 			Game.getCurrentGame().getScreen().getController().addEntity(enemy);
 		}

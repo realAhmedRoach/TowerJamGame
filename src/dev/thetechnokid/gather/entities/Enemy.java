@@ -12,6 +12,7 @@ public class Enemy extends Creature {
 
 	int frame = 1;
 	long lastTime = System.currentTimeMillis();
+	private boolean follow;
 
 	static final Tile walk1 = new Tile(Spritesheet.SHEET.crop(3, 3));
 	static final Tile walk2 = new Tile(Spritesheet.SHEET.crop(4, 3));
@@ -22,8 +23,9 @@ public class Enemy extends Creature {
 	static final Tile up1 = new Tile(Spritesheet.SHEET.crop(7, 3));
 	static final Tile up2 = new Tile(Spritesheet.SHEET.crop(8, 3));
 
-	public Enemy() {
+	public Enemy(boolean follow) {
 		super(walk1);
+		this.follow = follow;
 	}
 
 	@Override
@@ -41,8 +43,8 @@ public class Enemy extends Creature {
 	}
 
 	private void checkDiffs() {
-		diffX = Math.abs(userX - x) <= 1;
-		diffY = Math.abs(userY - y) <= 1;
+		diffX = Math.abs(userX - x) <= 5;
+		diffY = Math.abs(userY - y) <= 5;
 		if (diffX)
 			xMove = 0;
 		if (diffY)
@@ -50,41 +52,55 @@ public class Enemy extends Creature {
 	}
 
 	private void checkPos() {
-		if (userY > this.y) {
-			yMove = speed;
-			if ((userX - x) < (userY - y))
-				tile = frame == 1 ? down1 : down2;
-		}
-		if (userY < this.y) {
-			yMove = -speed;
-			if ((userX - x) > (userY - y))
-				tile = frame == 1 ? up1 : up2;
-		}
-		if (userX > this.x) {
-			xMove = speed;
-			if ((userY - y) < (userX - x))
-				tile = frame == 1 ? walk1 : walk2;
-		}
-		if (userX < this.x) {
-			xMove = -speed;
-			if ((userY - y) > (userX - x))
-				tile = frame == 1 ? walk1flip : walk2flip;
+		if (follow) {
+			if (userY > this.y) {
+				yMove = speed;
+				if ((userX - x) < (userY - y))
+					tile = frame == 1 ? down1 : down2;
+			}
+			if (userY < this.y) {
+				yMove = -speed;
+				if ((userX - x) > (userY - y))
+					tile = frame == 1 ? up1 : up2;
+			}
+			if (userX > this.x) {
+				xMove = speed;
+				if ((userY - y) < (userX - x))
+					tile = frame == 1 ? walk1 : walk2;
+			}
+			if (userX < this.x) {
+				xMove = -speed;
+				if ((userY - y) > (userX - x))
+					tile = frame == 1 ? walk1flip : walk2flip;
+			}
+		} else {
+			boolean rand1 = Math.random() < .3;
+			boolean rand2 = Math.random() > .6;
+			boolean rand3 = Math.random() <= .5;
+
+			if(rand2&&rand3)xMove = rand1 ? speed : -speed;
+			if (rand2) {
+				yMove = rand3 ? speed : -speed;
+			}
 		}
 	}
 
 	private void move() {
-		if (diffX && diffY){
+		if (diffX && diffY) {
 			tile = down1;
 			damage();
 		}
-			
-		x += xMove;
-		y += yMove;
+
+		if ((x + xMove) > 0 && (x + xMove) < Game.WIDTH)
+			x += xMove;
+		if ((y + yMove) > 0 && (y + yMove) < Game.HEIGHT)
+			y += yMove;
 	}
 
 	private void damage() {
-		if(Math.random()<.2) return;
-		
+		if (Math.random() < .2)
+			return;
+
 		Game.getCurrentGame().getScreen().getController().getUser().hit(dmg);
 	}
 
