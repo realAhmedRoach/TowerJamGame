@@ -86,9 +86,12 @@ public class TowerStage extends Stage {
 		} else if (Game.getCurrentGame().getKeyboard()
 				.getKeys()[KeyEvent.VK_2]) {
 			phase = 2;
+		} else if (Game.getCurrentGame().getKeyboard().getKeys()[KeyEvent.VK_3]) {
+			phase = 3;
 		}
 
 		if(phase == 1) Store.tick();
+		if(phase == 3) Stage.setCurrentStage(new War());
 	}
 
 }
