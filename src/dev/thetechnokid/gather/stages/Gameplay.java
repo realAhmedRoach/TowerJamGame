@@ -48,7 +48,7 @@ public class Gameplay extends Stage {
 		boolean done = false;
 		for (Entity entity : Game.getCurrentGame().getScreen().getController()
 				.getEntities()) {
-			if (!(entity instanceof Player)) {
+			if (!(entity instanceof Creature)) {
 				Ore o = (Ore) entity;
 				if (!o.isMined()) {
 					done = false;
