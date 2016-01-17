@@ -1,41 +1,65 @@
 package dev.thetechnokid.gather.util;
 
-import java.net.URL;
 
-import javax.sound.sampled.*;
+import java.io.File;
 
-import dev.thetechnokid.gather.Game;
+import javafx.embed.swing.JFXPanel;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 
-public class Sound implements Runnable {
+public class Sound {
 
-	private Thread thread;
-	private URL sound;
-	private Clip clip;
+	static {
+		new JFXPanel();
+	}
 
-	public Sound(String name) {
-		this.sound = Game.class.getResource("res/music/gather_"+name+".wav");
-		thread = new Thread(this, "Sound");
+	private volatile MediaPlayer sound;
+	private String soundFile = "";
+
+	public Sound(String file) {
+		create(file);
+	}
+
+	private void create(final String file) {
+		final File soundFile = new File(file);
+		if (!soundFile.exists()) {
+			System.err.println("Sound File \"" + file + "\" not found!");
+			return;
+		}
+		String[] strings = file.split("/");
+		this.soundFile = strings[strings.length - 1];
 		try {
-			init();
+			sound = new MediaPlayer(new Media(soundFile.toURI().toString()));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 
-	private void init() throws Exception {
-		AudioInputStream ais = AudioSystem.getAudioInputStream(sound);
-		clip = AudioSystem.getClip();
-		clip.open(ais);
-		clip.loop(Clip.LOOP_CONTINUOUSLY);
+	public void play() {
+		new Thread("Sound") {
+			public void run() {
+				sound.stop();
+				sound.setCycleCount(0);
+				sound.play();
+			}
+		}.start();
 	}
 
-	public void start() {
-		thread.start();
+	public void loop() {
+		new Thread("Sound: " + soundFile) {
+			public void run() {
+				sound.stop();
+				sound.setCycleCount(MediaPlayer.INDEFINITE);
+				sound.play();
+			}
+		}.start();
 	}
 
-	@Override
-	public void run() {
-		clip.start();
+	public void stop() {
+		sound.stop();
 	}
-
+	
+	public void setGain(double value) {
+		sound.setVolume(value);
+	}
 }

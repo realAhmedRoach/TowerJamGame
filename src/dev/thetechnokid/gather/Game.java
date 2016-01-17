@@ -48,7 +48,7 @@ public class Game extends Canvas implements Runnable {
 
 		key = new Keyboard();
 		logicManager = new LogicManager();
-		bg = new Sound("bg");
+		bg = new Sound("res/music/gather_bg.wav");
 
 		frame = new JFrame(NAME);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -79,6 +79,8 @@ public class Game extends Canvas implements Runnable {
 		double delta = 0;
 
 		screen = new Screen(WIDTH, HEIGHT);
+		
+		bg.loop();
 
 		while (running) {
 			long now = System.nanoTime();
@@ -97,6 +99,7 @@ public class Game extends Canvas implements Runnable {
 			// ticks = 0;
 			// }
 		}
+		bg.stop();
 	}
 
 	public void tick() {
