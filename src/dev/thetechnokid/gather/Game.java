@@ -12,6 +12,7 @@ import javax.swing.JFrame;
 import dev.thetechnokid.gather.gfx.Screen;
 import dev.thetechnokid.gather.input.Keyboard;
 import dev.thetechnokid.gather.logic.LogicManager;
+import dev.thetechnokid.gather.util.Sound;
 
 public class Game extends Canvas implements Runnable {
 	private static final long serialVersionUID = 1L;
@@ -35,6 +36,7 @@ public class Game extends Canvas implements Runnable {
 	private Screen screen;
 	private LogicManager logicManager;
 	private Keyboard key;
+	private Sound bg;
 
 	public boolean running = false;
 	public int tickCount = 0;
@@ -46,6 +48,7 @@ public class Game extends Canvas implements Runnable {
 
 		key = new Keyboard();
 		logicManager = new LogicManager();
+		bg = new Sound("bg");
 
 		frame = new JFrame(NAME);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
