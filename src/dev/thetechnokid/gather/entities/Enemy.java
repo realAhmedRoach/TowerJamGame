@@ -13,6 +13,8 @@ public class Enemy extends Creature {
 	int frame = 1;
 	long lastTime = System.currentTimeMillis();
 	private boolean follow;
+	private boolean hitted;
+	private long lastHit;
 
 	static final Tile walk1 = new Tile(Spritesheet.SHEET.crop(3, 3));
 	static final Tile walk2 = new Tile(Spritesheet.SHEET.crop(4, 3));
@@ -74,7 +76,7 @@ public class Enemy extends Creature {
 					tile = frame == 1 ? walk1flip : walk2flip;
 			}
 		} else {
-			boolean rand1 = Math.random() < .3;
+			boolean rand1 = Math.random() < .5;
 			boolean rand2 = Math.random() > .6;
 			boolean rand3 = Math.random() <= .5;
 
@@ -101,7 +103,13 @@ public class Enemy extends Creature {
 		if (Math.random() < .2)
 			return;
 
-		Game.getCurrentGame().getScreen().getController().getUser().hit(dmg);
+		if (System.currentTimeMillis() - lastHit > 400)
+			hitted = false;
+		if(!hitted){
+			Game.getCurrentGame().getScreen().getController().getUser().hit(dmg);
+			lastHit = System.currentTimeMillis();
+			hitted = true;
+		}
 	}
 
 }
