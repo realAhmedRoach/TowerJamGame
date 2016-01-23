@@ -37,6 +37,8 @@ public class Game extends Canvas implements Runnable {
 	private LogicManager logicManager;
 	private Keyboard key;
 	private Sound bg;
+	
+	private boolean soundOn = false;
 
 	public boolean running = false;
 	public int tickCount = 0;
@@ -80,7 +82,7 @@ public class Game extends Canvas implements Runnable {
 
 		screen = new Screen(WIDTH, HEIGHT);
 		
-		bg.loop();
+		if(soundOn) bg.loop();
 
 		while (running) {
 			long now = System.nanoTime();
@@ -99,7 +101,7 @@ public class Game extends Canvas implements Runnable {
 			// ticks = 0;
 			// }
 		}
-		bg.stop();
+		if(soundOn) bg.stop();
 	}
 
 	public void tick() {
