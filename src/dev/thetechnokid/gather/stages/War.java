@@ -42,9 +42,6 @@ public class War extends Stage {
 		} else if (won) {
 			Text.render("1 to continue", g, 8 * Tile.DRAW_SIZE,
 					8 * Tile.DRAW_SIZE);
-			if (Game.getCurrentGame().getKeyboard().getKeys()[KeyEvent.VK_1]) {
-				Stage.setCurrentStage(new After(lost));
-			}
 		}
 	}
 
@@ -59,6 +56,13 @@ public class War extends Stage {
 			if (e instanceof Enemy)
 				enemiesLeft = true;
 		}
+		
+		if(lost) {
+			Stage.setCurrentStage(new After(true));
+		} else if(!enemiesLeft) {
+			Stage.setCurrentStage(new After(false));
+		}
+		
 		if (!enemiesLeft && !lost)
 			won = true;
 	}

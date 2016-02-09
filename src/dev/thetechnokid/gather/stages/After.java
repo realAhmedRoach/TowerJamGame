@@ -27,6 +27,8 @@ public class After extends Stage {
 			Text.render("You won " + win[0] + "C and " + win[1] + "I", g,
 					5 * Tile.DRAW_SIZE, 5 * Tile.DRAW_SIZE);
 		}
+		
+		Text.render("1 to re-charge", g, 5*Tile.DRAW_SIZE, 7*Tile.DRAW_SIZE);
 	}
 
 	private int[] lose() {
