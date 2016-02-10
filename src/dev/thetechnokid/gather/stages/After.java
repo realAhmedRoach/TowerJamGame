@@ -2,6 +2,7 @@ package dev.thetechnokid.gather.stages;
 
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
+import java.util.Random;
 
 import dev.thetechnokid.gather.Game;
 import dev.thetechnokid.gather.gfx.*;
@@ -12,6 +13,11 @@ public class After extends Stage {
 
 	private boolean doneStuff;
 
+	private int[] win;
+	private int[] lose;
+
+	private Random rand = new Random();
+
 	public After(boolean lost) {
 		this.lost = lost;
 	}
@@ -21,23 +27,24 @@ public class After extends Stage {
 		Text.render("You have " + (lost ? "lost" : "won"), g, 5 * Tile.DRAW_SIZE, 3 * Tile.DRAW_SIZE);
 		if (lost) {
 			if (!doneStuff) {
-				int[] lose = lose();
-				Text.render("You lost " + lose[0] + "C and " + lose[1] + "I", g, 5 * Tile.DRAW_SIZE,
-						5 * Tile.DRAW_SIZE);
+				lose = lose();
+				doneStuff = true;
 			}
+			Text.render("You lost " + lose[0] + "C and " + lose[1] + "I", g, 5 * Tile.DRAW_SIZE, 5 * Tile.DRAW_SIZE);
 		} else {
 			if (!doneStuff) {
-				int[] win = win();
-				Text.render("You won " + win[0] + "C and " + win[1] + "I", g, 5 * Tile.DRAW_SIZE, 5 * Tile.DRAW_SIZE);
+				win = win();
+				doneStuff = true;
 			}
+			Text.render("You won " + win[0] + "C and " + win[1] + "I", g, 5 * Tile.DRAW_SIZE, 5 * Tile.DRAW_SIZE);
 		}
 
-		Text.render("1 to re-play", g, 5 * Tile.DRAW_SIZE, 7 * Tile.DRAW_SIZE);
+		Text.render("1 to " + (lost ? "re-play" : "continue"), g, 5 * Tile.DRAW_SIZE, 7 * Tile.DRAW_SIZE);
 	}
 
 	private int[] lose() {
-		int loseAmtC = (int) Math.random() * (Game.getCurrentGame().getLogicManager().getCoal() / 2);
-		int loseAmtI = (int) Math.random() * (Game.getCurrentGame().getLogicManager().getIron() / 2);
+		int loseAmtC = rand.nextInt(Game.getCurrentGame().getLogicManager().getCoal() / 2);
+		int loseAmtI = rand.nextInt(Game.getCurrentGame().getLogicManager().getIron() / 2);
 
 		Game.getCurrentGame().getLogicManager().buy(loseAmtC, loseAmtI);
 		return new int[] { loseAmtC, loseAmtI };
