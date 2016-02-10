@@ -14,7 +14,7 @@ public class Gameplay extends Stage {
 	public Gameplay() {
 		createEntities();
 		Game.getCurrentGame().getScreen().getController().addEntity(crap);
-		c = new Countdown(60);
+		c = new Countdown(10);
 		c.start();
 	}
 
@@ -31,6 +31,11 @@ public class Gameplay extends Stage {
 							.addEntity(c);
 				}
 			}
+		}
+		
+		if(Game.getCurrentGame().getScreen().getController().getEntities().contains(Game.getCurrentGame().getScreen().getController().getUser())) {
+			
+			Game.getCurrentGame().getScreen().getController().addEntity(Game.getCurrentGame().getScreen().getController().getUser());
 		}
 	}
 
