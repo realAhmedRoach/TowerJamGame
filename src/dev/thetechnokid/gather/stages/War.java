@@ -18,7 +18,7 @@ public class War extends Stage {
 	}
 
 	private void createEnemies() {
-		for (int y = 0; y < Game.HEIGHT / Tile.DRAW_SIZE; y++) {
+		for (int y = 0; y < Game.HEIGHT / Tile.DRAW_SIZE; y+=2) {
 			boolean rand = random.nextBoolean();
 			Enemy enemy = new Enemy(rand);
 			enemy.x = random.nextInt(Game.WIDTH - Tile.DRAW_SIZE);
