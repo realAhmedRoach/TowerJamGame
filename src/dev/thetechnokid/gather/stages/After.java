@@ -24,10 +24,11 @@ public class After extends Stage {
 
 	@Override
 	public void render(Graphics g, Screen screen) {
-		Text.render("You have " + (lost ? "lost" : "won"), g, 5 * Tile.DRAW_SIZE, 3 * Tile.DRAW_SIZE);
+		Text.render("You have " + (lost ? "died" : "won"), g, 5 * Tile.DRAW_SIZE, 3 * Tile.DRAW_SIZE);
 		if (lost) {
 			if (!doneStuff) {
 				lose = lose();
+				System.out.println("Losing...");
 				doneStuff = true;
 			}
 			Text.render("You lost " + lose[0] + "C and " + lose[1] + "I", g, 5 * Tile.DRAW_SIZE, 5 * Tile.DRAW_SIZE);

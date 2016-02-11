@@ -36,7 +36,7 @@ public class EntityController {
 		for (Entity entity : entities) {
 			if (entity.destroyed) entities.remove(entity);
 		}
-		if (!entities.contains(currUser)) System.out.println("DEAD!");
+//		if (!entities.contains(currUser)) System.out.println("DEAD!");
 		for (Entity entity : entities) {
 			entity.tick();
 		}
