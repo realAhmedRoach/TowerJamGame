@@ -1,13 +1,10 @@
 package dev.thetechnokid.gather;
 
-import java.awt.BorderLayout;
-import java.awt.Canvas;
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Graphics;
+import java.awt.*;
+import java.awt.event.KeyEvent;
 import java.awt.image.BufferStrategy;
 
-import javax.swing.JFrame;
+import javax.swing.*;
 
 import dev.thetechnokid.gather.gfx.Screen;
 import dev.thetechnokid.gather.input.Keyboard;
@@ -37,8 +34,11 @@ public class Game extends Canvas implements Runnable {
 	private LogicManager logicManager;
 	private Keyboard key;
 	private Sound bg;
-	
+
+	private JMenuBar bar = new JMenuBar();
+
 	private boolean soundOn = false;
+	private boolean soundPressed = false;
 
 	public boolean running = false;
 	public int tickCount = 0;
@@ -52,10 +52,22 @@ public class Game extends Canvas implements Runnable {
 		logicManager = new LogicManager();
 		bg = new Sound("res/music/gather_bg.wav");
 
+		JMenu settings = new JMenu("Settings");
+		JMenuItem sound = new JMenuItem("Switch Sound");
+
+		sound.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_C, KeyEvent.CTRL_DOWN_MASK));
+		sound.addActionListener(event -> {
+			soundOn = !soundOn;
+			soundPressed = true;
+		});
+		settings.add(sound);
+		bar.add(settings);
+
 		frame = new JFrame(NAME);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setLayout(new BorderLayout());
 		frame.add(this, BorderLayout.CENTER);
+		frame.setJMenuBar(bar);
 
 		frame.pack();
 		frame.setResizable(false);
@@ -77,12 +89,13 @@ public class Game extends Canvas implements Runnable {
 	public void run() {
 		long lastTime = System.nanoTime();
 		double nsPerTick = 1000000000D / 60D;
-		// long lastTimer = System.currentTimeMillis();
+		long lastTimer = System.currentTimeMillis();
 		double delta = 0;
 
 		screen = new Screen(WIDTH, HEIGHT);
-		
-		if(soundOn) bg.loop();
+
+		if (soundOn)
+			bg.loop();
 
 		while (running) {
 			long now = System.nanoTime();
@@ -94,14 +107,19 @@ public class Game extends Canvas implements Runnable {
 			}
 			render();
 
-			// if (System.currentTimeMillis() - lastTimer >= 1000) {
-			// lastTimer += 1000;
-			// System.out.println(ticks + " ticks, " + frames + " frames");
-			// frames = 0;
-			// ticks = 0;
-			// }
+			if (System.currentTimeMillis() - lastTimer >= 1000) {
+				lastTimer += 1000;
+				if (soundOn && soundPressed) {
+					bg.loop();
+					soundPressed = false;
+				} else if (!soundOn && soundPressed) {
+					bg.stop();
+					soundPressed = false;
+				}
+			}
 		}
-		if(soundOn) bg.stop();
+		if (soundOn)
+			bg.stop();
 	}
 
 	public void tick() {
