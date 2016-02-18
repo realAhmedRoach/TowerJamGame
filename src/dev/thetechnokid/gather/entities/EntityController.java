@@ -57,5 +57,10 @@ public class EntityController {
 			if(entities.get(i)!=currUser)
 				entities.remove(i);
 		}
+		if(!entities.contains(currUser)) {
+			currUser.hp = 100;
+			currUser.destroyed = false;
+			entities.add(currUser);
+		}
 	}
 }
