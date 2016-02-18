@@ -64,8 +64,14 @@ public class After extends Stage {
 
 	@Override
 	public void tick() {
-		if (Game.getCurrentGame().getKeyboard().getKeys()[KeyEvent.VK_1])
+		boolean key1 = Game.getCurrentGame().getKeyboard().getKeys()[KeyEvent.VK_1];
+		
+		if (key1 && !lost)
 			Stage.setCurrentStage(new Gameplay());
+		else if (key1 && lost) {
+			Game.getCurrentGame().getScreen().getController().clearEntities();
+			Stage.setCurrentStage(new Gameplay());
+		}
 	}
 
 }
