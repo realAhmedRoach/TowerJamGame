@@ -4,7 +4,7 @@ import dev.thetechnokid.gather.gfx.Tile;
 
 public abstract class Creature extends Entity {
 
-	protected int hp = 100;
+	protected volatile int hp = 100;
 	protected int dmg = 5;
 
 	protected int frame;

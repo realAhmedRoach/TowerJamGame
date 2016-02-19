@@ -17,6 +17,7 @@ public class Player extends Creature {
 
 	public Player() {
 		super(Tile.PLAYER_WALK1);
+		hp = 200;
 	}
 
 	@Override
